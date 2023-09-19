@@ -32,7 +32,7 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === "exit\n") {
+  if (text === "exit\n" || "quit\n") {
     quit();
   } else if (text === "hello\n") {
     hello();
