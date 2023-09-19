@@ -32,7 +32,7 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text === "exit\n" || "quit\n") {
+  if (text === "exit\n" || text === "quit\n") {
     quit();
   } else if (text === "hello\n") {
     hello();
@@ -60,7 +60,7 @@ function unknownCommand(c) {
  * @returns {void}
  */
 function hello() {
-  console.log("Konnichiwa ^,^/ !");
+  console.log(`Konnichiwa ^,^/ !`);
 }
 
 /**
@@ -79,7 +79,7 @@ function quit() {
  * @returns {void}
  */
 function help() {
-  console.log(" possible commands :\nhello \n exit\n help\n");
+  console.log(" possible commands :\n 'hello' \n 'exit' or 'quit'\n 'help' \n");
 }
 
 // The following line starts the application
