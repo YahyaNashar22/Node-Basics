@@ -75,6 +75,7 @@ function quit() {
 
 /**
  * Shows help commands
+ *
  * @returns {void}
  */
 function help() {
