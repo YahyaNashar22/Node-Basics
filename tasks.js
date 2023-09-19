@@ -58,7 +58,7 @@ function unknownCommand(c) {
  * @returns {void}
  */
 function hello() {
-  console.log("Konnichiwa!");
+  console.log("Konnichiwa ^,^/ !");
 }
 
 /**
