@@ -55,7 +55,9 @@ function onDataReceived(text) {
  */
 function makeList() {
   let arr = ["first task", "second task"];
-  console.log(arr);
+  for (let i = 0; i < arr.length; i++) {
+    console.log(i + 1 + " " + arr[i]);
+  }
 }
 
 /**
