@@ -86,7 +86,9 @@ function quit() {
  * @returns {void}
  */
 function help() {
-  console.log(" possible commands :\n 'hello' \n 'exit' or 'quit'\n 'help' \n");
+  console.log(
+    " possible commands :\n 'hello' \n 'hello <your_name>' \n 'exit' or 'quit'\n 'help' \n"
+  );
 }
 
 // The following line starts the application
