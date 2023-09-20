@@ -42,21 +42,40 @@ function onDataReceived(text) {
   } else if (text === "help\n") {
     help();
   } else if (text === "list\n") {
-    makeList();
+    makeList(arr);
+  } else if (split[0] === "add") {
+    add(split);
   } else {
     unknownCommand(text);
+  }
+}
+var arr = ["first-task", "second-task"];
+
+/**
+ *
+ *
+ * @param {Array} split
+ * @returns {void}
+ */
+function add(split) {
+  if (split.length >= 2) {
+    for (let i = 1; i < split.length; i++) {
+      arr.push(split[i]);
+      console.log(`'Added ${split[i]}'`);
+    }
+  } else {
+    console.log("you should specify one task");
   }
 }
 
 /**
  *
- *
+ * @param {Array} arr
  * @returns {void}
  */
-function makeList() {
-  let arr = ["first task", "second task"];
+function makeList(arr) {
   for (let i = 0; i < arr.length; i++) {
-    console.log(i + 1 + " " + arr[i]);
+    console.log(i + 1 + "-" + arr[i]);
   }
 }
 
