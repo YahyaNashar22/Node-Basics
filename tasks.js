@@ -53,6 +53,7 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
+// variables for checked , unchecked
 var done = "[✓]";
 var undone = "[ ]";
 var arr = [`${done}first-task`, `${undone}second-task`];
