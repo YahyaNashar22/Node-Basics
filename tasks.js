@@ -67,6 +67,7 @@ function hello(split) {
   if (split.length == 2) {
     console.log(`Konnichiwa ${split[1]}  ^,^/ !`);
   } else console.log("Konnichiwa ^,^/ !");
+  //already fixed the white space :p
 }
 
 /**
