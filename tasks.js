@@ -34,17 +34,19 @@ function startApp(name) {
 function onDataReceived(text) {
   let noWhiteSpace = text.replace("\n", " ");
   let trimmed = noWhiteSpace.trim();
-  let split = trimmed.split(" ");
+  let splitt = trimmed.split(" ");
   if (text === "exit\n" || text === "quit\n") {
     quit();
-  } else if (split[0] === "hello") {
-    hello(split);
+  } else if (splitt[0] === "hello") {
+    hello(splitt);
   } else if (text === "help\n") {
     help();
   } else if (text === "list\n") {
     makeList(arr);
-  } else if (split[0] === "add") {
-    add(split);
+  } else if (splitt[0] === "add") {
+    add(splitt);
+  } else if (splitt[0] === "remove") {
+    remove(splitt);
   } else {
     unknownCommand(text);
   }
@@ -52,23 +54,40 @@ function onDataReceived(text) {
 var arr = ["first-task", "second-task"];
 
 /**
+ *adds items to the list
  *
- *
- * @param {Array} split
+ * @param {Array} splitt
  * @returns {void}
  */
-function add(split) {
-  if (split.length >= 2) {
-    for (let i = 1; i < split.length; i++) {
-      arr.push(split[i]);
-      console.log(`'Added ${split[i]}'`);
-    }
+function add(splitt) {
+  if (splitt.length != 1) {
+    arr.push(splitt[1]);
+    console.log(`'Added ${splitt[1]}'`);
   } else {
     console.log("you should specify one task");
   }
 }
+/**
+ *removes from list
+ *
+ * @param {Array} splitt
+ * @returns {void}
+ */
+function remove(splitt) {
+  if (splitt.length == 1) {
+    arr.pop();
+    console.log("removed last task!");
+  } else if (splitt.length > 1) {
+    let index = parseInt(splitt[1]);
+    arr.splice(index - 1, 1);
+    console.log(`removed task ${index}`);
+  } else {
+    console.log("task list is empty");
+  }
+}
 
 /**
+ *displays the list
  *
  * @param {Array} arr
  * @returns {void}
@@ -93,12 +112,12 @@ function unknownCommand(c) {
 /**
  * Says hello
  *
- *@param {Array} split
+ *@param {Array} splitt
  * @returns {void}
  */
-function hello(split) {
-  if (split.length == 2) {
-    console.log(`Konnichiwa ${split[1]}  ^,^/ !`);
+function hello(splitt) {
+  if (splitt.length == 2) {
+    console.log(`Konnichiwa ${splitt[1]}  ^,^/ !`);
   } else console.log("Konnichiwa ^,^/ !");
   //already fixed the white space :p
 }
