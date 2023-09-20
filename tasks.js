@@ -79,8 +79,12 @@ function remove(splitt) {
     console.log("removed last task!");
   } else if (splitt.length > 1) {
     let index = parseInt(splitt[1]);
-    arr.splice(index - 1, 1);
-    console.log(`removed task ${index}`);
+    if (index > arr.length) {
+      console.log("anata wa baka desu ka? task wa inai !");
+    } else {
+      arr.splice(index - 1, 1);
+      console.log(`removed task ${index}`);
+    }
   } else {
     console.log("task list is empty");
   }
