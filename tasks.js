@@ -47,6 +47,8 @@ function onDataReceived(text) {
     add(splitt);
   } else if (splitt[0] === "remove") {
     remove(splitt);
+  } else if (splitt[0] === "edit") {
+    alter(splitt);
   } else {
     unknownCommand(text);
   }
@@ -87,6 +89,26 @@ function remove(splitt) {
     }
   } else {
     console.log("task list is empty");
+  }
+}
+
+/**
+ * edit command
+ * @param {Array} splitt
+ * @returns {void}
+ *
+ */
+function alter(splitt) {
+  let index = parseInt(splitt[1]);
+  if (splitt.length == 1) {
+    console.log("syntax error!");
+  } else if (splitt.length == 3 && splitt[1] == "new" && splitt[2] == "text") {
+    arr.pop();
+    arr.push("new text");
+    console.log("last task changed to 'new text'");
+  } else if (splitt.length == 4 && splitt[2] == "new" && splitt[3] == "text") {
+    arr.splice(index - 1, 1, "new text");
+    console.log(`changed task ${index} to 'new text'`);
   }
 }
 
