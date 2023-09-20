@@ -139,7 +139,7 @@ function quit() {
  */
 function help() {
   console.log(
-    " possible commands :\n 'hello' \n 'hello <your_name>' \n 'exit' or 'quit'\n 'help' \n"
+    " possible commands :\n 'hello' \n 'hello <your_name>' \n 'exit' or 'quit'\n 'help' \n 'add'\n 'remove'\n 'remove <nb>'\n 'list'\n"
   );
 }
 
