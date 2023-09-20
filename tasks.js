@@ -32,10 +32,13 @@ function startApp(name) {
  * @returns {void}
  */
 function onDataReceived(text) {
+  let noWhiteSpace = text.replace("\n", " ");
+  let trimmed = noWhiteSpace.trim();
+  let split = trimmed.split(" ");
   if (text === "exit\n" || text === "quit\n") {
     quit();
-  } else if (text === "hello\n") {
-    hello();
+  } else if (split[0] === "hello") {
+    hello(split);
   } else if (text === "help\n") {
     help();
   } else {
@@ -57,10 +60,13 @@ function unknownCommand(c) {
 /**
  * Says hello
  *
+ *@param {Array} split
  * @returns {void}
  */
-function hello() {
-  console.log(`Konnichiwa ^,^/ !`);
+function hello(split) {
+  if (split.length == 2) {
+    console.log(`Konnichiwa ${split[1]}  ^,^/ !`);
+  } else console.log("Konnichiwa ^,^/ !");
 }
 
 /**
