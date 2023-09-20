@@ -41,9 +41,21 @@ function onDataReceived(text) {
     hello(split);
   } else if (text === "help\n") {
     help();
+  } else if (text === "list\n") {
+    makeList();
   } else {
     unknownCommand(text);
   }
+}
+
+/**
+ *
+ *
+ * @returns {void}
+ */
+function makeList() {
+  let arr = ["first task", "second task"];
+  console.log(arr);
 }
 
 /**
