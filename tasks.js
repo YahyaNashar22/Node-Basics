@@ -53,7 +53,10 @@ function onDataReceived(text) {
     unknownCommand(text);
   }
 }
-var arr = ["first-task", "second-task"];
+var done = "[✓]";
+var undone = "[ ]";
+var arr = [`${done}first-task`, `${undone}second-task`];
+//✓
 
 /**
  *adds items to the list
@@ -63,8 +66,8 @@ var arr = ["first-task", "second-task"];
  */
 function add(splitt) {
   if (splitt.length != 1) {
-    arr.push(splitt[1]);
-    console.log(`'Added ${splitt[1]}'`);
+    arr.push(undone + splitt[1]);
+    console.log(`'Added ${[splitt[1]]}'`);
   } else {
     console.log("you should specify one task");
   }
@@ -102,13 +105,13 @@ function alter(splitt) {
   let index = parseInt(splitt[1]);
   if (splitt.length == 1) {
     console.log("syntax error!");
-  } else if (splitt.length == 3 && splitt[1] == "new" && splitt[2] == "text") {
+  } else if (splitt.length == 2) {
     arr.pop();
-    arr.push("new text");
-    console.log("last task changed to 'new text'");
-  } else if (splitt.length == 4 && splitt[2] == "new" && splitt[3] == "text") {
-    arr.splice(index - 1, 1, "new text");
-    console.log(`changed task ${index} to 'new text'`);
+    arr.push(undone + splitt[1]);
+    console.log(`last task changed to ${splitt[1]}`);
+  } else if (splitt.length > 2) {
+    arr.splice(index - 1, 1, undone + splitt[2]);
+    console.log(`changed task ${index} to ${splitt[2]}`);
   }
 }
 
@@ -144,7 +147,7 @@ function unknownCommand(c) {
 function hello(splitt) {
   if (splitt.length == 2) {
     console.log(`Konnichiwa ${splitt[1]}  ^,^/ !`);
-  } else console.log("Konnichiwa ^,^/ !");
+  } else console.log("Konnichiwa ^,^/ ! ");
   //already fixed the white space :p
 }
 
