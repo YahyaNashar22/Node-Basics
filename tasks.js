@@ -49,16 +49,51 @@ function onDataReceived(text) {
     remove(splitt);
   } else if (splitt[0] === "edit") {
     alter(splitt);
+  } else if (splitt[0] === "check" || splitt[0] === "uncheck") {
+    check(splitt, arr);
   } else {
     unknownCommand(text);
   }
 }
 // variables for checked , unchecked
+// let obj = {
+//   'taskName': ,
+//   'ischecked' :
+// }
 var done = "[✓]";
 var undone = "[ ]";
-var arr = [`${done}first-task`, `${undone}second-task`];
+var a = undone;
+
+var arr = [`${a}first-task`, `${a}second-task`];
 //✓
 
+/**
+ * Checks the tasks
+ * @param {Array} splitt
+ * @param {Array} arr
+ * @returns {void}
+ */
+function check(splitt, arr) {
+  if (splitt.length < 2) {
+    console.log("You need to specify which task!");
+  } else {
+    let index = parseInt(splitt[1]);
+    let task = arr[index - 1].toString();
+    let checkedTask = task.replace("[ ]", "[✓]");
+    let uncheckedTask = task.replace("[✓]", "[ ]");
+    if (splitt[0] === "check") {
+      if (splitt.length == 2) {
+        arr.splice(index - 1, 1, `${checkedTask}`);
+        console.log(`checked task ${index}`);
+      }
+    } else if (splitt[0] === "uncheck") {
+      if (splitt.length == 2) {
+        arr.splice(index - 1, 1, `${uncheckedTask}`);
+        console.log(`checked task ${index}`);
+      }
+    }
+  }
+}
 /**
  *adds items to the list
  *
@@ -169,7 +204,7 @@ function quit() {
  */
 function help() {
   console.log(
-    " possible commands :\n 'hello' \n 'hello <your_name>' \n 'exit' or 'quit'\n 'help' \n 'add'\n 'remove'\n 'remove <nb>'\n 'list'\n"
+    " possible commands :\n 'hello' \n 'hello <your_name>' \n 'exit' or 'quit'\n 'help' \n 'add'\n 'remove'\n 'remove <nb>'\n 'list'\n 'check'\n 'uncheck'\n "
   );
 }
 
