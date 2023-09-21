@@ -73,6 +73,8 @@ var undone = "[ ]";
 var a = undone;
 
 var fs = require("fs");
+const args = process.argv.slice(2);
+const filePath = args.length > 0 ? args[0] : "dataBase.json";
 var arr = [`${a}first-task`, `${a}second-task`];
 
 //✓
