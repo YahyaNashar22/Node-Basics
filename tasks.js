@@ -8,6 +8,10 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+
+// var fs = require("fs");
+// var array = fs.readFileSync("database.json");
+
 function startApp(name) {
   process.stdin.resume();
   process.stdin.setEncoding("utf8");
@@ -51,6 +55,10 @@ function onDataReceived(text) {
     alter(splitt);
   } else if (splitt[0] === "check" || splitt[0] === "uncheck") {
     check(splitt, arr);
+  } else if (text === "save\n") {
+    save(arr);
+  } else if (text === "load\n") {
+    load(arr);
   } else {
     unknownCommand(text);
   }
@@ -64,7 +72,9 @@ var done = "[✓]";
 var undone = "[ ]";
 var a = undone;
 
+var fs = require("fs");
 var arr = [`${a}first-task`, `${a}second-task`];
+
 //✓
 
 /**
@@ -186,17 +196,52 @@ function hello(splitt) {
   } else console.log("Konnichiwa ^,^/ ! ");
   //already fixed the white space :p
 }
-
+/**
+ *
+ * @returns {void}
+ *
+ */
+// function save() {
+//   fs.writeFileSync("database.json", stringy, "utf8", function (err) {
+//     if (err) {
+//       console.log("An error occured while writing JSON Object to File.");
+//       return console.log(err);
+//     }
+//     console.log("JSON file has been saved.");
+//   });
+// }
 /**
  * Exits the application
- *
  * @returns {void}
  */
 function quit() {
   console.log("Going so soon :( ?");
   process.exit();
 }
-
+function save(arr) {
+  var obj = Object.assign({}, arr);
+  var stringy = JSON.stringify(obj, null, 2);
+  const filePath = "database.json";
+  fs.writeFileSync(filePath, stringy);
+  console.log("'saved to json'");
+}
+function load(arr) {
+  const filePath = "database.json";
+  fs.readFile(filePath, "utf8", (err, data) => {
+    if (err) {
+      console.error("file wa doko desu ka?", err);
+      return;
+    }
+    try {
+      const loadedData = JSON.parse(data);
+      console.log("Object loaded", loadedData);
+      arr.splice(0, 2);
+      arr = arr.push(...Object.values(loadedData));
+    } catch (error) {
+      console.error("Error parsing JSON", error);
+    }
+  });
+}
 /**
  * Shows help commands
  *
